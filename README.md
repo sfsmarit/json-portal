@@ -1,5 +1,5 @@
 # design-portal
-Portal site for internal SFS SAW design
+Streamlit template for creating a portal site by parsing JSON.
 
 
 ### Prerequisites
