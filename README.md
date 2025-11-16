@@ -1,4 +1,4 @@
-# design-portal
+# json-portal
 Streamlit template for creating a portal site by parsing JSON.
 
 
