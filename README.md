@@ -1,14 +1,24 @@
 # json-portal
 Streamlit template for creating a portal site by parsing JSON.
+The portal site includes a JSON editor, allowing any user to modify the source file directly on the site.
 
+## Demo Page
+https://dummy-json.streamlit.app/
 
-### Prerequisites
+## Settings
+### Source file specification
+config.py
+
+### Streamlit settings
+.streamlit/config.toml
+
+## Prerequisites
 - Python 3.10+
 - Streamlit
 - Git installed
 
 
-### Steps
+## Steps
 ```bash
 # For the first time, create and activate python venv
 python -m venv <envname>
