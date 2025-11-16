@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 
+import config
 from components import json_editor
 
 
@@ -20,26 +21,27 @@ def render_segment(segm: dict):
 
 
 if __name__ == "__main__":
-    source = "portal.json"
+    with open(config.SOURCE_FILE, encoding="utf-8") as f:
+        data = json.load(f)
 
-    page_title = "SAW Design Portal"
+    page_title = data["Title"]
     st.set_page_config(page_title=page_title, layout="wide")
     st.title(page_title)
 
-    with open(source, encoding="utf-8") as f:
-        data = json.load(f)
+    for key, block in data.items():
+        if key not in ["Portal", "Table"]:
+            continue
 
-    for type_, block in data.items():
         for title, segm in block.items():
             st.markdown("---")
             st.markdown(title)
 
-            if type_ == "Portal":
+            if key == "Portal":
                 render_segment(segm)
-            elif type_ == "Table":
+            elif key == "Table":
                 st.table(segm)
 
     st.markdown("---")
 
     st.markdown("### Page Editor")
-    json_editor.render(source)
+    json_editor.render(config.SOURCE_FILE)
