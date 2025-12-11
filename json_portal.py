@@ -20,28 +20,27 @@ def render_segment(segm: dict):
                     st.markdown(f'{name} <a href="{url}">:material/link:</a>', unsafe_allow_html=True)
 
 
-if __name__ == "__main__":
-    with open(config.SOURCE_FILE, encoding="utf-8") as f:
-        data = json.load(f)
+with open(config.SOURCE_FILE, encoding="utf-8") as f:
+    data = json.load(f)
 
-    page_title = data["Title"]
-    st.set_page_config(page_title=page_title, layout="wide")
-    st.title(page_title)
+page_title = data["Title"]
+st.set_page_config(page_title=page_title, page_icon=":globe_with_meridians:", layout="wide")
+st.title(page_title)
 
-    for key, block in data.items():
-        if key not in ["Portal", "Table"]:
-            continue
+for key, block in data.items():
+    if key not in ["Portal", "Table"]:
+        continue
 
-        for title, segm in block.items():
-            st.markdown("---")
-            st.markdown(title)
+    for title, segm in block.items():
+        st.markdown("---")
+        st.markdown(title)
 
-            if key == "Portal":
-                render_segment(segm)
-            elif key == "Table":
-                st.table(segm)
+        if key == "Portal":
+            render_segment(segm)
+        elif key == "Table":
+            st.table(segm)
 
-    st.markdown("---")
+st.markdown("---")
 
-    st.markdown("### Page Editor")
-    json_editor.render(config.SOURCE_FILE)
+st.markdown("### Page Editor")
+json_editor.render(config.SOURCE_FILE)
